@@ -3,7 +3,7 @@ import java.util.Map;
 import java.time.LocalDate;
 
 public class Stock {
-    private final static Map<Product, Integer> inventory = new HashMap<>();
+    private final Map<Product, Integer> inventory = new HashMap<>();
 
     public void addProduct(Product product, int quantity) {
         if (product instanceof Expirable expirable) {
@@ -16,20 +16,14 @@ public class Stock {
         inventory.merge(product, quantity, Integer::sum);
     }
 
-    public boolean removeProduct(Product product, int quantity) {
+    public void removeProduct(Product product, int quantity) {
         Integer currentQty = inventory.get(product);
-        if (currentQty == null || currentQty < quantity) {
-            return false;
-        }
-
         int newQty = currentQty - quantity;
         if (newQty > 0) {
             inventory.put(product, newQty);
         } else {
             inventory.remove(product);
         }
-
-        return true;
     }
 
     public boolean isAvailable(Product product, int requiredQuantity) {

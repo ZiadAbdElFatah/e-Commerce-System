@@ -4,7 +4,11 @@ import java.time.LocalDate;
 
 public class Cart {
     private final Map<Product, Integer> cart = new HashMap<>();
-    private final Stock stock = new Stock();
+    private final Stock stock;
+
+    public Cart(Stock stock) {
+        this.stock = stock;
+    }
 
     public void addProduct(Product product, int quantity) {
         if (product instanceof Expirable expirable) {

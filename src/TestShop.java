@@ -18,10 +18,8 @@ public class TestShop {
         stock.addProduct(mobile, 3);
         stock.addProduct(scratchCard, 7);
 
-        System.out.println("Initial stock: " + stock);
-
         // Create cart
-        Cart cart = new Cart();
+        Cart cart = new Cart(stock);
 
         // Add products to cart
         cart.addProduct(cheeseFresh, 2);  // ok
